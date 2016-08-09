@@ -94,9 +94,7 @@ $(document).ready(function() {
         setCatAttributes: function(nm, ur, cl) {
             var allCats = octopus.getAllCats();
 
-            var cat;
-
-            for(var i = 0; i < cats.length; i++) {
+            for(var i = 0; i < allCats.length; i++) {
                 if(allCats[i].name === model.currentCat.name){
                     allCats[i].name = nm;
                     allCats[i].clickCount = cl;
@@ -105,7 +103,7 @@ $(document).ready(function() {
                     cat = allCats[i];
                 }
             }
-            setCurrentCat(cat);
+            this.setCurrentCat(cat);
             catListView.render();
             catView.render();
         }
@@ -182,7 +180,8 @@ $(document).ready(function() {
                 $('#admin-area').hide('slow');
             })
 
-            $('#save-button').click(function() {
+            $('#save-button').click(function(e) {
+                e.preventDefault();
                 var name = $('#name').val();
                 var url = $('#url').val();
                 var clicks = $('#clicks').val();
